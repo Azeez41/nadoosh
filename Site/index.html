@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Happy Birthday, Nadoosh ❤️</title>
+
+<!-- Google Fonts: Fraunces (display), Manrope (body) — a warm, premium editorial pairing for the green/brown theme -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,500;0,600;0,700;0,800;1,600&family=Manrope:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ============================================= -->
+<!-- CURSOR SPARKLE TRAIL -->
+<!-- ============================================= -->
+<div id="sparkle-trail-container" aria-hidden="true"></div>
+
+<!-- ============================================= -->
+<!-- AMBIENT FLOATING HEARTS / LEAVES BACKGROUND -->
+<!-- ============================================= -->
+<div id="ambient-decor" aria-hidden="true"></div>
+
+<!-- ============================================= -->
+<!-- SECTION 1 — LOADING SCREEN -->
+<!-- ============================================= -->
+<div id="loading-screen">
+  <div class="loading-inner">
+    <div class="loading-heart">❤</div>
+    <p class="loading-title">Initializing Nadoosh Birthday Experience<span class="dots">...</span></p>
+    <p class="loading-step" id="loading-step">Scanning memories...</p>
+    <div class="loading-bar-track">
+      <div class="loading-bar-fill" id="loading-bar-fill"></div>
+    </div>
+    <p class="loading-percent" id="loading-percent">0%</p>
+    <p class="loading-verified hidden" id="loading-verified">Verified ❤️</p>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- TOP NAV — logo (Hogwarts easter egg), music toggle, sound fx toggle -->
+<!-- ============================================= -->
+<nav id="top-nav">
+  <button id="logo-btn" aria-label="Nadoosh logo">🍀 Nadoosh</button>
+  <div class="nav-controls">
+    <button id="sound-toggle" class="pill-btn" title="Toggle sound effects">🔊</button>
+    <button id="music-toggle" class="pill-btn" title="Toggle background music">🎵</button>
+  </div>
+</nav>
+
+<!-- Hidden Hogwarts easter egg (click logo 5x) -->
+<div id="hogwarts-egg" aria-hidden="true">🏰✨</div>
+
+<!-- Hidden OHG ice cream easter egg — small, low-opacity, tucked in a corner -->
+<button id="ohg-egg" title="?" aria-label="a mysterious ice cream">🍦</button>
+
+<!-- ============================================= -->
+<!-- SECTION 2 — HERO -->
+<!-- ============================================= -->
+<section id="hero" class="section fullscreen">
+  <div class="glass-card hero-card reveal-on-load">
+    <p class="eyebrow">✨ a website that exists for one person only ✨</p>
+    <h1 class="hero-title">Happy Birthday,<br><span class="script">Nadoosh</span> <span class="heart-emoji">❤️</span></h1>
+    <p class="hero-subtitle">Welcome to a website made only for Mi Amor.</p>
+    <button class="btn-primary" id="begin-btn">Begin Your Experience</button>
+  </div>
+  <div class="scroll-hint">scroll when ready ↓</div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 3 — FAKE AI LOVE SCANNER -->
+<!-- ============================================= -->
+<section id="scanner" class="section fullscreen">
+  <div class="glass-card reveal">
+    <p class="kicker">🧠 NADOOSH AI SCANNER v8.0</p>
+    <h2 class="section-title">Running full analysis...</h2>
+
+    <div class="stat-row"><span class="stat-label">Beauty</span><div class="bar-track"><div class="bar-fill" id="bar-beauty"></div></div><span class="stat-value" id="val-beauty">0%</span></div>
+    <div class="stat-row"><span class="stat-label">Kindness</span><div class="bar-track"><div class="bar-fill" id="bar-kindness"></div></div><span class="stat-value" id="val-kindness">0%</span></div>
+    <div class="stat-row"><span class="stat-label">Giggle Level</span><div class="bar-track"><div class="bar-fill glitch-fill" id="bar-giggle"></div></div><span class="stat-value" id="val-giggle">Calculating…</span></div>
+    <p class="error-text hidden" id="giggle-error">⚠️ ERROR: Too many HEHEs detected.</p>
+
+    <div class="stat-row"><span class="stat-label">Harry Potter obsession</span><div class="bar-track"><div class="bar-fill" id="bar-hp"></div></div><span class="stat-value" id="val-hp">0%</span></div>
+    <div class="stat-row"><span class="stat-label">LEGO creativity</span><div class="bar-track"><div class="bar-fill" id="bar-lego"></div></div><span class="stat-value" id="val-lego">0%</span></div>
+    <div class="stat-row"><span class="stat-label">OHG cravings</span><div class="bar-track"><div class="bar-fill" id="bar-ohg"></div></div><span class="stat-value" id="val-ohg">0%</span></div>
+
+    <p class="conclusion-text hidden" id="scanner-conclusion">Conclusion: this human is too adorable to be scientifically measured.</p>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 4 — RELATIONSHIP DASHBOARD -->
+<!-- ============================================= -->
+<section id="dashboard" class="section">
+  <div class="section-header reveal">
+    <p class="kicker">📊 RELATIONSHIP DASHBOARD</p>
+    <h2 class="section-title">Live statistics (very official)</h2>
+  </div>
+
+  <div class="dashboard-grid reveal">
+    <div class="dash-card"><p class="dash-label">Love between Abdulaziz &amp; Nadoosh</p><p class="dash-value">∞</p></div>
+    <div class="dash-card"><p class="dash-label">Times Nadoosh was right</p><p class="dash-value">Probably always</p></div>
+    <div class="dash-card"><p class="dash-label">Times Abdulaziz was right</p><p class="dash-value" id="dash-loading">loading<span class="dots">...</span></p></div>
+    <div class="dash-card"><p class="dash-label">Times Abdulaziz said sorry</p><p class="dash-value">ERROR: Too many results</p></div>
+    <div class="dash-card"><p class="dash-label">Times Abdulaziz apologized</p><p class="dash-value">Unlimited</p></div>
+    <div class="dash-card"><p class="dash-label">Money Abdulaziz currently has</p><p class="dash-value">Bro is trying his best 💀</p></div>
+    <div class="dash-card"><p class="dash-label">Times Abdulaziz was broke</p><p class="dash-value">Classified information</p></div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 5 — RELATIONSHIP JOURNEY (with swimming sharks) -->
+<!-- ============================================= -->
+<section id="journey" class="section">
+  <div class="section-header reveal">
+    <p class="kicker">🕰️ THE JOURNEY</p>
+    <h2 class="section-title">Us, so far</h2>
+  </div>
+
+  <div class="timeline reveal">
+    <div class="timeline-item">
+      <p class="timeline-date">07 / 10 / 2025</p>
+      <p class="timeline-text">The day everything started. (Also Abdulaziz's birthday.)</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-date">12 / 12 / 2025</p>
+      <p class="timeline-text">The day we became us ❤️</p>
+    </div>
+    <div class="timeline-item">
+      <p class="timeline-date">The Scientific Center</p>
+      <p class="timeline-text">Watching sharks together became one of my favorite memories.</p>
+    </div>
+  </div>
+
+  <div class="aquarium" id="aquarium" aria-hidden="true">
+    <!-- sharks injected by JS, swimming across an aquarium-styled background -->
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 6 — EMOTIONAL MEMORY GALLERY -->
+<!-- ============================================= -->
+<section id="gallery" class="section">
+  <div class="section-header reveal">
+    <p class="kicker">📸 HOW YOU MAKE ME FEEL</p>
+    <h2 class="section-title">Four feelings, four memories</h2>
+    <p class="section-sub">Tap a card to open it.</p>
+  </div>
+
+  <div class="emotion-grid reveal" id="emotion-grid">
+    <!-- cards injected by JS: Happiness / Peace / Love / Adventure -->
+  </div>
+</section>
+
+<div id="gallery-modal" class="modal-overlay">
+  <div class="modal-content glass-card">
+    <button class="modal-close" id="modal-close">✕</button>
+    <div class="modal-image" id="modal-image"></div>
+    <p class="modal-caption" id="modal-caption"></p>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 7 — FUNNY ROAST SECTION -->
+<!-- ============================================= -->
+<section id="roast" class="section">
+  <div class="section-header reveal">
+    <p class="kicker">😂 THINGS NADOOSH HAS TO DEAL WITH</p>
+    <h2 class="section-title">...because of Abdulaziz</h2>
+  </div>
+
+  <div class="roast-grid reveal">
+    <div class="roast-card">⚠️ Warning: contains a large amount of Abdulaziz.</div>
+    <div class="roast-card">May randomly apologize 17 times.</div>
+    <div class="roast-card">Sometimes thinks he is right… even when Nadoosh knows better.</div>
+    <div class="roast-card">Currently suffering from: being broke syndrome.</div>
+    <div class="roast-card">Still somehow the luckiest guy alive, because he has Nadoosh.</div>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 8 — THE BUTTON THAT RUNS AWAY -->
+<!-- ============================================= -->
+<section id="runaway" class="section fullscreen">
+  <div class="glass-card reveal" id="runaway-card">
+    <p class="kicker">🎁 ONE SURPRISE, IF YOU CAN CATCH IT</p>
+    <h2 class="section-title">Click for your surprise.</h2>
+    <button class="btn-primary" id="runaway-btn">Click for your surprise 🎁</button>
+    <p class="reward-text hidden" id="runaway-reward">Okay okay Nadoosh, you win 😂<br>You unlocked a secret ❤️</p>
+  </div>
+</section>
+
+<!-- ============================================= -->
+<!-- SECTION 9 — HIDDEN VIDEO (glowing heart easter egg) -->
+<!-- ============================================= -->
+<section id="hidden-video-section" class="section fullscreen">
+  <div class="glass-card reveal">
+    <p class="kicker">🤍 SOMETHING QUIET</p>
+    <h2 class="section-title">Not everything on this page announces itself.</h2>
+    <p class="section-sub">Some things you just have to notice.</p>
+  </div>
+  <!-- the glowing heart trigger is intentionally subtle — see #glow-heart, positioned via CSS -->
+</section>
+<button id="glow-heart" aria-label="a small glowing heart"></button>
+
+<div id="video-reveal-overlay">
+  <div class="video-reveal-inner">
+    <p class="video-reveal-text" id="video-reveal-text">One more memory...</p>
+    <div class="video-wrap hidden" id="video-wrap">
+      <video id="memory-video" controls poster="" preload="none">
+        <source src="video/birthday-dinner.mp4" type="video/mp4">
+      </video>
+      <p class="video-fallback-note">(Add your video file at <code>video/birthday-dinner.mp4</code> — the player will just work once it's there.)</p>
+    </div>
+    <button class="modal-close" id="video-close">✕</button>
+  </div>
+</div>
+
+<!-- ============================================= -->
+<!-- SECTION 10 — FINAL MESSAGE -->
+<!-- ============================================= -->
+<section id="finale" class="section fullscreen">
+  <div id="finale-stars" aria-hidden="true"></div>
+  <div id="finale-hearts" aria-hidden="true"></div>
+  <div class="finale-text-wrap">
+    <p class="finale-typed" id="finale-typed"></p>
+    <span class="finale-cursor" id="finale-cursor">|</span>
+  </div>
+</section>
+
+<!-- background music: replace src with your own song file -->
+<audio id="bg-music" loop preload="none">
+  <source src="music/our-song.mp3" type="audio/mpeg">
+</audio>
+
+<!-- confetti canvas -->
+<canvas id="confetti-canvas"></canvas>
+
+<!-- easter egg toast -->
+<div id="egg-toast"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
