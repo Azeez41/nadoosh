@@ -366,3 +366,100 @@ button { font-family: inherit; border: none; cursor: pointer; background: none; 
   #top-nav { padding: 0.8rem 1rem; }
   .aquarium { height: 120px; }
 }
+
+/* =====================================================================
+   BONUS SECRET SECTION — DORA'S EMERGENCY SPANISH INSPECTION
+   ===================================================================== */
+#dora-overlay {
+  position: fixed; inset: 0; z-index: 9700;
+  background: #0a0a0a;
+  display: none; align-items: center; justify-content: center;
+  flex-direction: column; text-align: center; padding: 2rem;
+  opacity: 0; transition: opacity 0.6s ease;
+}
+#dora-overlay.active { display: flex; }
+#dora-overlay.show { opacity: 1; }
+
+.dora-stage { width: min(560px, 92vw); }
+
+.dora-loading-text {
+  color: #fff; font-family: var(--font-display); font-style: italic;
+  font-size: clamp(1rem, 4vw, 1.4rem); animation: fadeInUp 0.6s ease;
+}
+
+.dora-avatar {
+  font-size: 4rem; margin-bottom: 1rem;
+  animation: doraSlideIn 0.8s cubic-bezier(.2,.8,.3,1) both;
+}
+@keyframes doraSlideIn { from { transform: translateX(-140%) rotate(-8deg); opacity: 0; } to { transform: translateX(0) rotate(0deg); opacity: 1; } }
+.dora-avatar.bounce { animation: doraBounce 0.6s ease-in-out infinite; }
+@keyframes doraBounce { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-18px); } }
+
+.dora-speech {
+  color: #fff; font-family: var(--font-display); font-weight: 600;
+  font-size: clamp(1.1rem, 4.5vw, 1.6rem); min-height: 2.4em;
+  margin-bottom: 1.4rem; animation: fadeInUp 0.5s ease;
+}
+
+.dora-input-row { display: flex; gap: 0.6rem; justify-content: center; flex-wrap: wrap; animation: fadeInUp 0.5s ease; }
+.dora-input-row input {
+  padding: 0.85rem 1.2rem; border-radius: 50px; border: none;
+  font-family: var(--font-body); font-size: 1rem; width: min(240px, 60vw);
+  background: rgba(255,255,255,0.92); color: var(--ink);
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.dora-input-row input:focus { outline: 2px solid var(--gold); }
+.dora-input-row.swiped input { transform: translateX(120vw) rotate(20deg); opacity: 0; }
+
+.dora-map-alert {
+  color: #fff; font-size: 2rem; font-weight: 800; margin-top: 1rem;
+  animation: mapShake 0.35s ease-in-out infinite;
+}
+@keyframes mapShake { 0%,100% { transform: rotate(0deg);} 25% { transform: rotate(-3deg);} 75% { transform: rotate(3deg);} }
+
+.dora-swiper {
+  color: #FF8C42; font-weight: 800; font-size: 1.3rem; margin-top: 1rem;
+  animation: swiperDash 1s ease forwards;
+}
+@keyframes swiperDash { 0% { transform: translateX(-100vw); } 20%,80% { transform: translateX(0); } 100% { transform: translateX(100vw); } }
+
+.dora-backpack {
+  font-size: 3.2rem; margin: 1rem 0 0.6rem;
+  animation: backpackOpen 0.7s ease both;
+}
+@keyframes backpackOpen { 0% { transform: scale(0.5) rotate(-15deg); opacity: 0; } 60% { transform: scale(1.2) rotate(8deg); } 100% { transform: scale(1) rotate(0deg); opacity: 1; } }
+.dora-folder {
+  color: var(--gold); font-weight: 700; font-size: 0.95rem;
+  background: rgba(255,255,255,0.08); border-radius: 12px; padding: 0.8rem 1.1rem;
+  word-break: break-word; animation: fadeInUp 0.6s ease;
+}
+
+.dora-video-frame { position: relative; z-index: 2; }
+.dora-video-frame video { width: 100%; border-radius: 18px; box-shadow: 0 20px 60px rgba(0,0,0,0.6); background: #000; }
+.dora-caption {
+  margin-top: 1rem; color: var(--gold); font-family: var(--font-display); font-style: italic;
+  font-size: 1.2rem; min-height: 1.6em; animation: fadeInUp 0.4s ease;
+}
+
+#taco-rain-container { position: fixed; inset: 0; z-index: 1; pointer-events: none; overflow: hidden; }
+.taco-emoji {
+  position: fixed; top: -10vh; z-index: 1;
+  animation-name: tacoFall; animation-timing-function: cubic-bezier(.5,0,.5,1); animation-fill-mode: forwards;
+}
+@keyframes tacoFall {
+  0%   { transform: translate(0, -10vh) rotate(0deg); opacity: 0; }
+  8%   { opacity: 1; }
+  65%  { transform: translate(calc(var(--end-x) * 0.6), 82vh) rotate(280deg); }
+  75%  { transform: translate(calc(var(--end-x) * 0.75), 72vh) rotate(310deg); }
+  85%  { transform: translate(calc(var(--end-x) * 0.9), 90vh) rotate(340deg); }
+  100% { transform: translate(var(--end-x), 112vh) rotate(410deg); opacity: 0.85; }
+}
+
+.dora-grade-title { color: var(--gold); font-weight: 700; font-size: 0.78rem; letter-spacing: 0.1em; margin: 0.9rem 0 0.3rem; text-align: left; }
+.grade-bar-track { height: 12px; border-radius: 20px; background: rgba(255,255,255,0.12); overflow: hidden; }
+.grade-bar-fill { height: 100%; width: 0%; border-radius: 20px; background: linear-gradient(90deg, var(--moss), var(--gold)); transition: width 1.2s cubic-bezier(.2,.8,.3,1); }
+.grade-bar-fill.overflow { background: repeating-linear-gradient(45deg, #B23A3A, #B23A3A 6px, var(--gold) 6px, var(--gold) 12px); width: 100%; }
+.grade-percent { color: #fff; font-size: 0.85rem; font-weight: 700; text-align: right; margin-top: 0.15rem; }
+.grade-percent.error { color: #FF8080; text-align: left; }
+.final-grade { color: var(--gold); font-family: var(--font-display); font-weight: 800; font-size: 1.1rem; margin-top: 1.6rem; word-break: break-word; }
+.certified-text { color: #fff; font-style: italic; margin-top: 0.4rem; }

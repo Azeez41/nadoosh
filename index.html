@@ -111,6 +111,82 @@
   </div>
 </section>
 
+<!-- Invisible trigger: when this scrolls into view (once), the Dora bonus section fires -->
+<div id="dora-trigger" aria-hidden="true"></div>
+
+<!-- ============================================= -->
+<!-- BONUS SECRET SECTION — Dora's Emergency Spanish Inspection -->
+<!-- Fires unexpectedly once #dora-trigger scrolls into view. Freezes the page. -->
+<!-- ============================================= -->
+<div id="dora-overlay">
+
+  <!-- Stage 0: connecting screen -->
+  <div class="dora-stage" id="dora-stage-connecting">
+    <p class="dora-loading-text" id="dora-connect-text">Connecting to the International Spanish Department...</p>
+  </div>
+
+  <!-- Stage 1: Dora intro + name check -->
+  <div class="dora-stage hidden" id="dora-stage-intro">
+    <div class="dora-avatar" id="dora-avatar-intro">🧑🏽‍🦱🎒</div>
+    <p class="dora-speech" id="dora-speech-lines"></p>
+    <form class="dora-input-row hidden" id="dora-form" autocomplete="off">
+      <input type="text" id="dora-input" placeholder="Type your name..." autocomplete="off">
+      <button type="submit" class="btn-primary">Go!</button>
+    </form>
+    <div class="dora-map-alert hidden" id="dora-map-alert">🗺️<br>THAT'S NOT HER!!</div>
+    <div class="dora-swiper hidden" id="dora-swiper">🦊 "Swiper, no swiping!"</div>
+  </div>
+
+  <!-- Stage 2: success celebration -->
+  <div class="dora-stage hidden" id="dora-stage-success">
+    <div class="dora-avatar bounce" id="dora-avatar-success">🧑🏽‍🦱🎒</div>
+    <p class="dora-speech" id="dora-success-lines"></p>
+    <div class="dora-backpack hidden" id="dora-backpack">🎒</div>
+    <div class="dora-folder hidden" id="dora-folder">📁 NADA_SPANISH_PROJECT_FINAL_FINAL_v7_REALFINAL.mp4</div>
+  </div>
+
+  <!-- Stage 3: cinematic video + taco rain -->
+  <div class="dora-stage hidden" id="dora-stage-video">
+    <div class="dora-video-frame">
+      <video id="dora-video" controls poster="">
+        <source src="video/spanish-project.mp4" type="video/mp4">
+      </video>
+      <p class="video-fallback-note">(Add your video at <code>video/spanish-project.mp4</code> — it'll just play here once it exists.)</p>
+    </div>
+    <p class="dora-caption" id="dora-video-caption">¡Muy bien!</p>
+    <div id="taco-rain-container" aria-hidden="true"></div>
+  </div>
+
+  <!-- Stage 4: fake grading screen -->
+  <div class="dora-stage hidden" id="dora-stage-grading">
+    <p class="dora-grade-title">SPANISH PRONUNCIATION</p>
+    <div class="grade-bar-track"><div class="grade-bar-fill" id="grade-bar-1"></div></div>
+    <p class="grade-percent">100%</p>
+
+    <p class="dora-grade-title">COOKING</p>
+    <div class="grade-bar-track"><div class="grade-bar-fill" id="grade-bar-2"></div></div>
+    <p class="grade-percent">100%</p>
+
+    <p class="dora-grade-title">CUTENESS</p>
+    <div class="grade-bar-track"><div class="grade-bar-fill overflow" id="grade-bar-3"></div></div>
+    <p class="grade-percent error">ERROR — LEVEL EXCEEDS SOFTWARE LIMITS</p>
+
+    <p class="dora-grade-title">CONFIDENCE</p>
+    <div class="grade-bar-track"><div class="grade-bar-fill" id="grade-bar-4"></div></div>
+    <p class="grade-percent">999%</p>
+
+    <p class="final-grade">FINAL GRADE: A+++++++++++++++++++++++++++++++++++++++++</p>
+    <p class="certified-text">Certified Latina.</p>
+  </div>
+
+  <!-- Stage 5: whisper transition into the finale -->
+  <div class="dora-stage hidden" id="dora-stage-whisper">
+    <div class="dora-avatar" id="dora-avatar-whisper">🧑🏽‍🦱🎒</div>
+    <p class="dora-speech" id="dora-whisper-lines"></p>
+  </div>
+
+</div>
+
 <!-- ============================================= -->
 <!-- SECTION 5 — RELATIONSHIP JOURNEY (with swimming sharks) -->
 <!-- ============================================= -->

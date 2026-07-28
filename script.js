@@ -552,3 +552,224 @@ I love you.`;
     }
   });
 })();
+
+/* =====================================================================
+   BONUS SECRET SECTION — DORA'S EMERGENCY SPANISH INSPECTION
+   Fires once, unexpectedly, when #dora-trigger scrolls into view.
+   Freezes the page behind a full-screen overlay until it resolves
+   into the finale.
+   ===================================================================== */
+(function initDoraSequence() {
+  const overlay = document.getElementById('dora-overlay');
+  const stages = {
+    connecting: document.getElementById('dora-stage-connecting'),
+    intro: document.getElementById('dora-stage-intro'),
+    success: document.getElementById('dora-stage-success'),
+    video: document.getElementById('dora-stage-video'),
+    grading: document.getElementById('dora-stage-grading'),
+    whisper: document.getElementById('dora-stage-whisper'),
+  };
+  const connectText = document.getElementById('dora-connect-text');
+  const speechLines = document.getElementById('dora-speech-lines');
+  const doraForm = document.getElementById('dora-form');
+  const doraInput = document.getElementById('dora-input');
+  const mapAlert = document.getElementById('dora-map-alert');
+  const swiper = document.getElementById('dora-swiper');
+  const successLines = document.getElementById('dora-success-lines');
+  const backpack = document.getElementById('dora-backpack');
+  const folder = document.getElementById('dora-folder');
+  const video = document.getElementById('dora-video');
+  const videoCaption = document.getElementById('dora-video-caption');
+  const tacoContainer = document.getElementById('taco-rain-container');
+  const whisperLines = document.getElementById('dora-whisper-lines');
+
+  let fired = false;
+  let tacoInterval = null;
+
+  function showStage(name) {
+    Object.values(stages).forEach((s) => s.classList.add('hidden'));
+    stages[name].classList.remove('hidden');
+  }
+
+  /* type a sequence of lines into a target element, one at a time */
+  function playLines(target, lines, gap, onDone) {
+    let i = 0;
+    function next() {
+      if (i >= lines.length) { if (onDone) onDone(); return; }
+      target.style.animation = 'none';
+      void target.offsetWidth;
+      target.textContent = lines[i];
+      target.style.animation = 'fadeInUp 0.5s ease';
+      playBeep(560 + i * 20, 0.06, 'sine', 0.03);
+      i++;
+      setTimeout(next, gap);
+    }
+    next();
+  }
+
+  function startSequence() {
+    document.body.style.overflow = 'hidden';
+    overlay.classList.add('active');
+    requestAnimationFrame(() => overlay.classList.add('show'));
+    showStage('connecting');
+
+    const connectSteps = [
+      'Connecting to the International Spanish Department...',
+      'Loading...',
+      'Loading...',
+      'Connection established.',
+    ];
+    let ci = 0;
+    const connectInterval = setInterval(() => {
+      ci++;
+      if (ci < connectSteps.length) {
+        connectText.textContent = connectSteps[ci];
+      } else {
+        clearInterval(connectInterval);
+        setTimeout(introStage, 500);
+      }
+    }, 850);
+  }
+
+  function introStage() {
+    showStage('intro');
+    doraForm.classList.add('hidden');
+    doraInput.value = '';
+    const introLines = ['¡Hola! Soy Dora!', 'Today we\'re looking for...', 'The birthday girl!', 'Can you help me?'];
+    playLines(speechLines, introLines, 1000, () => {
+      doraForm.classList.remove('hidden');
+      doraInput.focus();
+    });
+  }
+
+  function handleWrongName() {
+    doraForm.classList.add('hidden');
+    const disappointedLines = ['Hmmm...', 'I don\'t think that\'s right.', 'Maybe try again!'];
+    playLines(speechLines, disappointedLines, 1000, () => {
+      mapAlert.classList.remove('hidden');
+      playBeep(220, 0.3, 'sawtooth', 0.05);
+      setTimeout(() => {
+        mapAlert.classList.add('hidden');
+        doraForm.classList.add('swiped');
+        swiper.classList.remove('hidden');
+        setTimeout(() => {
+          swiper.classList.add('hidden');
+          doraForm.classList.remove('swiped', 'hidden');
+          doraInput.value = '';
+          speechLines.textContent = 'Try again!';
+          doraInput.focus();
+        }, 1000);
+      }, 1200);
+    });
+  }
+
+  function handleCorrectName() {
+    doraForm.classList.add('hidden');
+    Confetti.burst(160);
+    playSuccess();
+    showStage('success');
+    const successMsgs = ['WE DID IT!!', '¡Lo hicimos!'];
+    playLines(successLines, successMsgs, 1100, () => {
+      backpack.classList.remove('hidden');
+      setTimeout(() => {
+        folder.classList.remove('hidden');
+        setTimeout(() => {
+          successLines.textContent = 'Let\'s watch it together!';
+          setTimeout(videoStage, 1700);
+        }, 1300);
+      }, 700);
+    });
+  }
+
+  doraForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const name = doraInput.value.trim().toLowerCase();
+    playClick();
+    if (name === 'nada') handleCorrectName();
+    else handleWrongName();
+  });
+
+  function spawnTaco() {
+    const items = ['🌮', '🌯', '🥑', '🌶️'];
+    const el = document.createElement('span');
+    el.className = 'taco-emoji';
+    el.textContent = items[Math.floor(Math.random() * items.length)];
+    const size = 1.4 + Math.random() * 1.4;
+    el.style.left = Math.random() * 92 + 'vw';
+    el.style.fontSize = size + 'rem';
+    el.style.setProperty('--end-x', (Math.random() * 140 - 70) + 'px');
+    const dur = 2.2 + Math.random() * 1.6;
+    el.style.animationDuration = dur + 's';
+    tacoContainer.appendChild(el);
+    setTimeout(() => el.remove(), dur * 1000 + 200);
+  }
+
+  function videoStage() {
+    showStage('video');
+    const captions = ['¡Muy bien!', 'Excelente!', 'Chef Nada!!', 'Five Michelin stars!', 'Estoy orgullosa de ti!'];
+    let capIndex = 0;
+    videoCaption.textContent = captions[0];
+    const captionInterval = setInterval(() => {
+      capIndex = (capIndex + 1) % captions.length;
+      videoCaption.textContent = captions[capIndex];
+    }, 2400);
+
+    tacoInterval = setInterval(spawnTaco, 220);
+
+    let ended = false;
+    function finishVideo() {
+      if (ended) return;
+      ended = true;
+      clearInterval(tacoInterval);
+      clearInterval(captionInterval);
+      tacoContainer.innerHTML = '';
+      video.pause();
+      setTimeout(gradingStage, 400);
+    }
+
+    video.addEventListener('ended', finishVideo, { once: true });
+    video.play().catch(() => { /* no video file yet — fall back to a timed demo below */ });
+
+    // Fallback so the story keeps moving even before a real video file is added
+    setTimeout(finishVideo, 9000);
+  }
+
+  function gradingStage() {
+    showStage('grading');
+    setTimeout(() => {
+      document.getElementById('grade-bar-1').style.width = '100%';
+      document.getElementById('grade-bar-2').style.width = '100%';
+      document.getElementById('grade-bar-4').style.width = '100%';
+      playSuccess();
+    }, 200);
+    setTimeout(whisperStage, 4200);
+  }
+
+  function whisperStage() {
+    showStage('whisper');
+    const lines = ['But wait...', 'I heard Abdulaziz has something to say...'];
+    playLines(whisperLines, lines, 1400, () => {
+      setTimeout(closeSequence, 1200);
+    });
+  }
+
+  function closeSequence() {
+    overlay.classList.remove('show');
+    setTimeout(() => {
+      overlay.classList.remove('active');
+      document.body.style.overflow = '';
+      document.getElementById('finale').scrollIntoView({ behavior: 'smooth' });
+    }, 650);
+  }
+
+  const trigger = document.getElementById('dora-trigger');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting && !fired) {
+        fired = true;
+        startSequence();
+      }
+    });
+  }, { threshold: 0.1 });
+  observer.observe(trigger);
+})();
