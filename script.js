@@ -758,7 +758,9 @@ I love you.`;
     setTimeout(() => {
       overlay.classList.remove('active');
       document.body.style.overflow = '';
-      document.getElementById('finale').scrollIntoView({ behavior: 'smooth' });
+      // Don't jump anywhere — just hand control back to the page exactly
+      // where it was interrupted (right after the dashboard, at the top
+      // of the journey section), so scrolling continues normally from there.
     }, 650);
   }
 
